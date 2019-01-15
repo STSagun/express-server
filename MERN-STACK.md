@@ -3,23 +3,23 @@
 
 Here’s a breakdown of the typical stack setup:
 
-### MongoDB as a NoSQL database
+### MongoDB as a NoSQL database<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Sdpm5Q2hYAd20LewK3Z-QCXu0eIbPZ7EESQBbdzLbB9_Z_nS" height="30" width="30" align="left">
 * An open source document database that provides persistence for application data.
 * Bridges the gap between key-value stores (fast and scalable) and relational databases (rich functionality).
 * Stores data as JSON documents in collections with dynamic schemas.
 * Designed with scalability and developer agility in mind.
 * Designed to be used asynchronously thus it pairs well with Node.js applications.
 
-### Express web framework of Node.js provides routing and middleware
+### Express web framework of Node.js provides routing and middleware<img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/359/thumb/expressjslogo.png" height="30" width="30" align="left">
 
 * Basically runs the backend code as a module within the Node.js environment.
 * Handles the routing of requests to the right parts of your app.
 
-### React.js provides a dynamic frontend
+### React.js provides a dynamic frontend <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc9qehbuh3jJsrsE83XLxbXY-86U8lt4dy8MFYlgp26WFOv4-q" height="30" width="30" align="left">
 
 * A JavaScript library developed by Facebook to build interactive / reactive interfaces.
 
-### Node.js on the server
+### Node.js on the server<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXTk-C0O8AykhUIBuRcwgIZkyFycp158Y5yBv3y5wclUcHs-67Wg" height="30" width="30" align="left">
 
 * A javascript runtime environment.
 * An asynchronous event-driven engine - which means the app makes a request for some data and then performs other tasks while waiting for a response.
