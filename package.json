@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
 
-    "pattern.Diamond": "nodemon express-server/extra/patterns/Diamond.js",
-    "pattern.Etriangle": "nodemon express-server/extra/patterns/EquilateralTriangle.js",
+    "pattern.Diamond": "nodemon extra/patterns/diamond.js",
+    "pattern.Etriangle": "nodemon extra/patterns/equilateraltriangle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
