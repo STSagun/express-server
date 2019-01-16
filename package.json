@@ -1,0 +1,22 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "for pratice pattern",
+  "main": "index.js",
+  "scripts": {
+
+    "pattern.Diamond": "nodemon extra/patterns/diamond.js",
+    "pattern.Etriangle": "nodemon extra/patterns/equilateraltriangle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STSagun/express-server.git"
+  },
+  "author": "Sagun Saluja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STSagun/express-server/issues"
+  },
+  "homepage": "https://github.com/STSagun/express-server#readme"
+}
