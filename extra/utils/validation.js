@@ -19,7 +19,7 @@ let validCount = 0;
 let invalidCount = 0;
 
 function validateEmail(email) {
-  let regex = /^([A-Za-z0-9 \-\.])+\@(successive.tech)/;
+  let regex = /^([A-Za-z0-9 \-\.])+\@(successive.tech)$/;
   return regex.test(email);
 }
 

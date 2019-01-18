@@ -1,8 +1,12 @@
+const getUsers = "getUsers"
+const headTrainer = "head-trainer"
+const trainer = "trainer"
+const trainee = "trainee"
 const permission = {
   getUsers: {
-    all: ["head-trainer"],
-    read: ["trainee", "trainer"],
-    write: ["trainer"],
+    all: [headTrainer],
+    read: [trainee, trainer],
+    write: [trainer],
     delete: []
   }
 };
@@ -15,4 +19,4 @@ function hasPermission(moduleName, role, permissionType) {
   }
 }
 
-hasPermission("getUsers", "trainee", "write");
+hasPermission("getUsers", "head-trainer", "write");
