@@ -1,30 +1,9 @@
-let users = [
-  {
-    traineeEmail: "trainee1@successive.tech",
-    reviewerEmail: "reviewer1@successive.tech"
-  },
+import { default as validateEmail } from "./helpers";
 
-  {
-    traineeEmail: "trainee1@successive.tech",
-    reviewerEmail: "reviewer1@successive.tech"
-  },
-
-  {
-    traineeEmail: "trainee1@successive.tech",
-    reviewerEmail: "reviewer1@successive.tech"
-  }
-];
-
-let validCount = 0;
-let invalidCount = 0;
-
-function validateEmail(email) {
-  let regex = /^([A-Za-z0-9 \-\.])+\@(successive.tech)$/;
-  return regex.test(email);
-}
-
-function validateUsers(users) {
-  users.forEach(function(user, index) {
+export default function validateUsers(users1) {
+  let validCount = 0;
+  let invalidCount = 0;
+  users1.forEach(function(user, index) {
     const { traineeEmail, reviewerEmail } = user;
     if (validateEmail(traineeEmail)) {
       validCount++;
@@ -41,7 +20,5 @@ function validateUsers(users) {
       console.log(reviewerEmail, "invalid user");
     }
   });
+  console.log(`${validCount} valid and ${invalidCount} invalid users`);
 }
-
-validateUsers(users);
-console.log(`${validCount} valid and ${invalidCount} invalid users`);
