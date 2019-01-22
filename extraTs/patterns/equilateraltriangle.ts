@@ -1,5 +1,5 @@
-export default function EquilateralTriangle(n) {
-  let pattern = "";
+export default function EquilateralTriangle(n: number): void {
+  let pattern: string = "";
   for (let i = 1; i <= n; i++) {
     for (let j = n; j > i; j--) {
       pattern += " ";
