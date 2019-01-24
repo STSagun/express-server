@@ -1,8 +1,10 @@
 import { IConfig } from "./config/IConfig";
 import * as express from "express";
 import * as bodyParser from "express";
-import { errorHandler  } from "./libs/routes/index";
-import { notFoundRoute } from "./libs/routes/index";
+import { errorHandler, notFoundRoute } from "./libs/routes/index";
+import { default as router } from "./router";
+import successHandler from "./libs/routes/successHandler";
+
 class Server {
   public app: express.Express;
 
@@ -27,10 +29,11 @@ class Server {
     app.use("/health-checker", (req, res) => {
       res.send("I am ok ");
     });
+    console.log("in server");
+    app.use("/api", router);
     app.use(notFoundRoute);
     app.use(errorHandler);
-
-
+    app.use(successHandler);
   }
   public run() {
     const {
@@ -46,4 +49,3 @@ class Server {
   }
 }
 export { Server };
-
