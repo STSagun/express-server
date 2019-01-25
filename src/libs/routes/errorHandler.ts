@@ -1,12 +1,16 @@
+import { Request, Response } from "express";
 
-import { Server } from 'src/Server';
-
-export default function errorHandler(err, req, res, next) {
-  console.error("in errorhandler");
-  res.json({
-    error: "Not Found",
-    message: "error",
-    status: "500",
+export default function errorHandler(
+  err: any,
+  req: Request,
+  res: Response,
+  next
+) {
+  const { error, message, status } = err;
+  res.status(status).json({
+    error: error || "Not Found",
+    message: message || "error",
+    status: status || 500,
     timestamp: new Date()
   });
 }
