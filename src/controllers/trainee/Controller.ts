@@ -18,13 +18,13 @@ class traineeController {
 
   post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
-    if (!name || !id) {
-      return next({
-        error: "Bad request",
-        message: "Incomplete entries of either name or id)",
-        status: 500
-      });
-    }
+    // if (!name || !id) {
+    //   return next({
+    //     error: "Bad request",
+    //     message: "Incomplete entries of either name or id)",
+    //     status: 500
+    //   });
+    // }
     const data = [
       {
         name,
