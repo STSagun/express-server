@@ -7,7 +7,9 @@ class traineeController {
         name: "trainee1",
         Id: 1
       },
-      { name: "trainee2", Id: 2 }
+      {
+        name: "trainee2",
+        Id: 2 }
     ];
     res
       .status(200)
@@ -16,7 +18,6 @@ class traineeController {
 
   post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
-    console.log("name:", name, ":id,", id);
     if (!name || !id) {
       return next({
         error: "Bad request",
@@ -26,8 +27,8 @@ class traineeController {
     }
     const data = [
       {
-        name: name,
-        id: id
+        name,
+        id
       }
     ];
 
@@ -53,5 +54,4 @@ class traineeController {
       .send(successHandler("trainee deleted successfully", "ok", 200, null));
   }
 }
-console.log("in controller");
 export default new traineeController();

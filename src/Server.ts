@@ -29,7 +29,6 @@ class Server {
     app.use("/health-checker", (req, res) => {
       res.send("I am ok ");
     });
-    console.log("in server");
     app.use("/api", router);
     app.use(notFoundRoute);
     app.use(errorHandler);
