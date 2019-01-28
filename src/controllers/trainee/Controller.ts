@@ -9,7 +9,8 @@ class traineeController {
       },
       {
         name: "trainee2",
-        Id: 2 }
+        Id: 2
+      }
     ];
     res
       .status(200)
@@ -38,10 +39,11 @@ class traineeController {
   }
 
   put(req: Request, res: Response) {
+    const { dataToUpdate, id } = req.body;
     const data = [
       {
-        name: "Sagun",
-        Id: "12"
+        dataToUpdate: dataToUpdate,
+        Id: id
       }
     ];
     res

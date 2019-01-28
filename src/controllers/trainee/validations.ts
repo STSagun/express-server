@@ -4,14 +4,16 @@ const validation = {
       required: true,
       string: true,
       in: ["body"],
+      errorMessage: "Id  is required",
       custom: function(value) {
         console.log("Value", value);
-        throw { error: "Error Occured", message: "Message" };
+      //  throw { error: "Error Occurred", message: "Message" };
+
       }
     },
     name: {
       required: true,
-      regex: "",
+      regex: /^[a-zA-Z\\s]*$/,
       in: ["body"],
       errorMessage: "Name is required"
     }

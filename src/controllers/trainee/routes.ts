@@ -7,5 +7,5 @@ traineeRouter
   .get("/", validationHandler(validations.get), traineeController.get)
   .post("/",validationHandler(validations.post), traineeController.post)
   .put("/", validationHandler(validations.put),traineeController.put)
-  .delete("/", validationHandler(validations.delete), traineeController.delete);
+  .delete("/:id", validationHandler(validations.delete), traineeController.delete);
 export { traineeRouter };
