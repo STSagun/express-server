@@ -9,7 +9,8 @@ class traineeController {
       },
       {
         name: "trainee2",
-        Id: 2 }
+        Id: 2
+      }
     ];
     res
       .status(200)
@@ -18,13 +19,13 @@ class traineeController {
 
   post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
-    if (!name || !id) {
-      return next({
-        error: "Bad request",
-        message: "Incomplete entries of either name or id)",
-        status: 500
-      });
-    }
+    // if (!name || !id) {
+    //   return next({
+    //     error: "Bad request",
+    //     message: "Incomplete entries of either name or id)",
+    //     status: 500
+    //   });
+    // }
     const data = [
       {
         name,
@@ -38,10 +39,11 @@ class traineeController {
   }
 
   put(req: Request, res: Response) {
+    const { dataToUpdate, id } = req.body;
     const data = [
       {
-        name: "Sagun",
-        Id: "12"
+        dataToUpdate: dataToUpdate,
+        Id: id
       }
     ];
     res

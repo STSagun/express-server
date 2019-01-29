@@ -1,8 +1,11 @@
-export default (message: string, success: string, status: number, data: any)=>(
-  {
-    Message: message,
-    Success: success,
-    Status: status,
-    Data: data
-  }
-)
+export default (
+  Message: string,
+  Success: string,
+  Status: number,
+  Data: any
+) => ({
+  Message,
+  Success,
+  Status,
+  Data
+});
