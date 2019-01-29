@@ -1,11 +1,11 @@
 export default (
-  message: string,
-  success: string,
-  status: number,
-  data: any
+  Message: string,
+  Success: string,
+  Status: number,
+  Data: any
 ) => ({
-  Message: message,
-  Success: success,
-  Status: status,
-  Data: data
+  Message,
+  Success,
+  Status,
+  Data
 });
