@@ -6,7 +6,7 @@ const validation = {
       in: ["body"],
       errorMessage: "Id  is required",
       custom: function(value) {
-        console.log("Value", value);
+
       //  throw { error: "Error Occurred", message: "Message" };
 
       }

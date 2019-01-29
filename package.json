@@ -25,13 +25,12 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.2.3",
+    "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "jsonwebtoken": "^8.4.0",
     "tsc-watch": "^1.0.31",
-    "typescript": "^3.2.4",
-    "@babel/preset-env": "^7.2.3",
-    "babel": "^6.23.0"
-
-    }
-
+    "typescript": "^3.2.4"
+  }
 }

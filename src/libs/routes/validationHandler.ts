@@ -52,7 +52,8 @@ export default objData => (req, res, next) => {
     if (item && item.in) {
       const validateValue = value.filter(item => item);
       const reqKeys = Object.keys(req[item.in[0]]);
-      if (!reqKeys.length) {
+      console.log('regb keys', reqKeys, reqKeys.length, key);
+      if (reqKeys.length) {
         if (!reqKeys.includes(key)) {
           next(notFound("incorrect request"));
         }
