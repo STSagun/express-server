@@ -4,19 +4,19 @@ export default function authMiddleWare(module, permissionType) {
   return function(req, res, next) {
     const token = req.headers["authorization"];
     require("dotenv").config();
-    console.log("user-->");
-    const user = jwt.verify(token, process.env.KEY, function(err) {
+    const user = jwt.verify(token, process.env.KEY, function(err,result) {
       if (err) {
         next({
           error: "Unauthorized Access",
-          message: "unaurthrized user",
+          message: "Unauthorized user",
           status: 400
         });
       }
+      return result
     });
     if (!hasPermission(module, user.role, permissionType)) {
       next({
-        error: "permission Denied",
+        error: "Permission Denied",
         message: `Access of ${permissionType} for ${user.role} do not exits`,
         status: "400"
       });
