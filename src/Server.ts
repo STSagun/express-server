@@ -4,7 +4,7 @@ import * as bodyParser from "express";
 import { errorHandler, notFoundRoute } from "./libs/routes/index";
 import { default as router } from "./router";
 import successHandler from "./libs/routes/successHandler";
-import Database from "./libs/Database"
+import Database from "./libs/Database";
 
 class Server {
   public app: express.Express;
@@ -38,21 +38,19 @@ class Server {
   public run() {
     const {
       app,
-      config: { Port, MONGO_URL },
-
+      config: { Port, MONGO_URL }
     } = this;
     Database.open(MONGO_URL)
-    .then(result=>{
-      console.log("Connected")
-      app.listen(Port, err => {
-        if (err) throw err;
-        console.log("app is running at", Port);
+      .then(result => {
+        console.log("Connected");
+        app.listen(Port, err => {
+          if (err) throw err;
+          console.log("app is running at", Port);
+        });
+      })
+      .catch(err => {
+        console.log("Oops Some Error Ocurred");
       });
-    })
-    .catch(err=>{
-      console.log("Oops Some Error Ocurred");
-    })
-
-    }
+  }
 }
 export { Server };
