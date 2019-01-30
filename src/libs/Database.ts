@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 
 class Database {
-  open(mongo) {
+ static open(mongo) {
     return new Promise(function(resolve, reject) {
       mongoose
         .connect(
@@ -12,8 +12,8 @@ class Database {
         .catch(err => reject(err));
     });
   }
-  disconnect() {
+  static disconnect() {
     mongoose.disconnect();
   }
 }
-export default new Database();
+export default  Database;
