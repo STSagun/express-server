@@ -16,28 +16,18 @@ class traineeController {
       .status(200)
       .send(successHandler("trainee fetched successfully", "ok", 200, data));
   }
-
   post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
-    // if (!name || !id) {
-    //   return next({
-    //     error: "Bad request",
-    //     message: "Incomplete entries of either name or id)",
-    //     status: 500
-    //   });
-    // }
     const data = [
       {
         name,
         id
       }
     ];
-
     res
       .status(200)
       .send(successHandler("trainee updated successfully", "ok", 200, data));
   }
-
   put(req: Request, res: Response) {
     const { dataToUpdate, id } = req.body;
     const data = [
