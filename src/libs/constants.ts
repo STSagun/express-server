@@ -8,5 +8,11 @@ export const permission: IPermission = {
     read: [trainee, trainer],
     write: [trainer],
     delete: []
+  },
+  "User": {
+    all: [headTrainer],
+    read: [trainee, trainer],
+    write: [trainer],
+    delete: []
   }
 };
