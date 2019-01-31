@@ -12,7 +12,7 @@ const {
 } = validations;
 const { get, post, put, delete: del } = traineeController;
 traineeRouter
-  .get("/", authMiddleWare(`Traineee`, `read`), get)
+  .get("/", authMiddleWare(`Traineee`, `write`), get)
   .post("/", validationHandler(valPost), post)
   .put("/", validationHandler(valPut), put)
   .delete("/:id", validationHandler(valDelete), del);
