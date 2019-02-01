@@ -1,23 +1,32 @@
-import IUserModel from "./IUserModel";
-import { userSchema, UserModel } from "./UserModel";
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
+import IUserModel from './IUserModel';
+import { UserModel, userSchema } from './UserModel';
 export default class UserRepository {
+  public static generateObjectID() {
+    return String(mongoose.Types.ObjectId());
+  }
   private Model: mongoose.Model<IUserModel>;
 
   constructor() {
     this.Model = UserModel;
   }
-  static generateObjectID() {
-    return String(mongoose.Types.ObjectId());
-  }
-  create(...data: any) {
+  public create(...data: any) {
     return this.Model.create(data, UserRepository.generateObjectID());
   }
-  delete(...data: any) {
-    this.Model.deleteOne({ name: "abc" }, function(err) {});
+  public delete(...data: any) {
+    this.Model.deleteMany({ name: 'abcd' }, (err) => {
+      if (err) { throw err; }
+      console.log('document deleted');
+
+    });
   }
-  update(...data: any) {
-    this.Model.deleteOne({ name: "abc" }, function(err) {});
+  public update(...data: any) {
+    this.Model.updateOne({ id: '8' }, { $set: {name: 'ab', id: '1' } }, (err) => {
+    if (err) { throw err; }
+    console.log('1 document updated');
+
+  });
+
   }
 
 }

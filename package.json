@@ -6,7 +6,17 @@
   "scripts": {
     "nodemon": "nodemon ./dist/index.js",
     "dev": "babel-node extra --presets env",
-    "src": "tsc-watch --project . --onSuccess \"npm run nodemon\""
+    "src": "tsc-watch --project . --onSuccess \"npm run nodemon\"",
+    "pre-commit": "npm start",
+    "lint": "./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --exclude 'node_modules/**/*.{j,t}s'",
+    "lint:fix": "yarn lint -- --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test",
+      "...": "..."
+    }
   },
   "repository": {
     "type": "git",
@@ -39,6 +49,6 @@
     "nodemon": "^1.18.9",
     "tsc-watch": "^1.0.31",
     "tslint": "^5.12.1",
-    "typescript": "^3.2.4"
+    "typescript": "^3.3.1"
   }
 }
