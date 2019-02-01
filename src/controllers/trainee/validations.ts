@@ -1,58 +1,58 @@
 const validation = {
-  post: {
-    id: {
-      required: true,
-      string: true,
-      in: ["body"],
-      errorMessage: "Id  is required",
-      custom: function(value) {
-
-      //  throw { error: "Error Occurred", message: "Message" };
-
-      }
-    },
-    name: {
-      required: true,
-      regex: /^[a-zA-Z\\s]*$/,
-      in: ["body"],
-      errorMessage: "Name is required"
-    }
-  },
   delete: {
     id: {
+      errorMessage: 'Id  is required',
+      in: ['params'],
       required: true,
-      errorMessage: "Id  is required",
-      in: ["params"]
-    }
-  },
-  get: {
-    skip: {
-      required: false,
-      default: 0,
-      number: true,
-      in: ["query"],
-      errorMessage: "Skip is invalid"
     },
-    limit: {
-      required: false,
-      default: 10,
-      number: true,
-      in: ["query"],
-      errorMessage: "Limit is invalid"
-    }
   },
-  put: {
+  post: {
     id: {
+      errorMessage: 'Id  is required',
+      in: ['body'],
       required: true,
       string: true,
-      in: ["body"]
+      custom(value) {
+        //  throw { error: "Error Occurred", message: "Message" };
+      },
     },
-    dataToUpdate: {
-      in: ["body"],
+    name: {
+      errorMessage: 'Name is required',
+      in: ['body'],
+      regex: /^[a-zA-Z\\s]*$/,
       required: true,
+    },
+  },
+
+  get: {
+    limit: {
+      default: 10,
+      errorMessage: 'Limit is invalid',
+      in: ['query'],
+      number: true,
+      required: false,
+    },
+    skip: {
+      default: 0,
+      errorMessage: 'Skip is invalid',
+      in: ['query'],
+      number: true,
+      required: false,
+    },
+
+  },
+  put: {
+    dataToUpdate: {
+      in: ['body'],
       isObject: true,
-      custom: function(dataToUpdate) {}
-    }
-  }
+      required: true,
+      // custom(dataToUpdate) {value},
+      },
+    id: {
+      in: ['body'],
+      required: true,
+      string: true,
+      },
+    },
 };
 export default validation;

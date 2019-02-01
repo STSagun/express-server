@@ -1,2 +1,2 @@
-import { traineeRouter } from "./routes";
+import { traineeRouter } from './routes';
 export default traineeRouter;

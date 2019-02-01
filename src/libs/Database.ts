@@ -1,19 +1,25 @@
-import * as mongoose from "mongoose";
-
+import * as mongoose from 'mongoose';
+import seed from './seedData';
+import { deleteData, UpdateData } from './seedData';
 class Database {
- static open(mongo) {
-    return new Promise(function(resolve, reject) {
+  public static open(mongo) {
+    return new Promise((resolve, reject) => {
       mongoose
         .connect(
           mongo,
-          { useNewUrlParser: true }
+          { useNewUrlParser: true },
         )
-        .then(result => resolve(result))
-        .catch(err => reject(err));
+        .then((result) => {
+          seed();
+          UpdateData();
+          deleteData();
+          resolve(result);
+          })
+        .catch((err) => reject(err));
     });
   }
-  static disconnect() {
+  public static disconnect() {
     mongoose.disconnect();
   }
 }
-export default  Database;
+export default Database;

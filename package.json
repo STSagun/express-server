@@ -6,7 +6,17 @@
   "scripts": {
     "nodemon": "nodemon ./dist/index.js",
     "dev": "babel-node extra --presets env",
-    "src": "tsc-watch --project . --onSuccess \"npm run nodemon\""
+    "src": "tsc-watch --project . --onSuccess \"npm run nodemon\"",
+    "pre-commit": "npm start",
+    "lint": "./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --exclude 'node_modules/**/*.{j,t}s'",
+    "lint:fix": "yarn lint -- --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint:fix",
+      "...": "..."
+    }
   },
   "repository": {
     "type": "git",
@@ -21,19 +31,24 @@
   "dependencies": {
     "@types/mongoose": "^5.3.10",
     "@types/node": "^10.12.18",
+    "add": "^2.0.6",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "mongoose": "^5.4.7"
+    "global": "^4.3.2",
+    "mongoose": "^5.4.7",
+    "yarn": "^1.13.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.2.3",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "husky": "^1.3.1",
     "jsonwebtoken": "^8.4.0",
     "nodemon": "^1.18.9",
     "tsc-watch": "^1.0.31",
-    "typescript": "^3.2.4"
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1"
   }
 }
