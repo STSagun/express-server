@@ -1,49 +1,49 @@
-import { Request, Response, Next } from "express";
-import { default as successHandler } from "../../libs/routes/successHandler";
-class traineeController {
-  get(req: Request, res: Response) {
+import { Next, Request, Response } from 'express';
+import { default as successHandler } from '../../libs/routes/successHandler';
+class TraineeController {
+  public get(req: Request, res: Response) {
     const data = [
       {
-        name: "trainee1",
-        Id: 1
+        Id: 1,
+        name: 'trainee1',
       },
       {
-        name: "trainee2",
-        Id: 2
-      }
+        Id: 2,
+        name: 'trainee2',
+      },
     ];
     res
       .status(200)
-      .send(successHandler("trainee fetched successfully", "ok", 200, data));
+      .send(successHandler( data, 'trainee fetched successfully', 200, 'ok' ));
   }
-  post(req: Request, res: Response, next: Next) {
+  public post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
     const data = [
       {
+        id,
         name,
-        id
-      }
+      },
     ];
     res
       .status(200)
-      .send(successHandler("trainee updated successfully", "ok", 200, data));
+      .send(successHandler(data, 'Trainee updated successfully', 200, 'ok' ));
   }
-  put(req: Request, res: Response) {
+  public put(req: Request, res: Response) {
     const { dataToUpdate, id } = req.body;
     const data = [
       {
-        dataToUpdate: dataToUpdate,
-        Id: id
-      }
+        Id: id,
+        dataToUpdate,
+      },
     ];
     res
       .status(200)
-      .send(successHandler("trainee upgraded successfully", "ok", 200, data));
+      .send(successHandler(data, 'Trainee updated successfully', 200, 'ok' ));
   }
-  delete(req: Request, res: Response) {
+  public delete(req: Request, res: Response) {
     res
       .status(200)
-      .send(successHandler("trainee deleted successfully", "ok", 200, null));
+      .send(successHandler(undefined, 'Trainee deleted successfully', 200, 'ok'  ));
   }
 }
-export default new traineeController();
+export default new TraineeController();

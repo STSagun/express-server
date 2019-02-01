@@ -10,23 +10,14 @@ export default class UserRepository {
   constructor() {
     this.Model = UserModel;
   }
-  public create(...data: any) {
-    return this.Model.create(data, UserRepository.generateObjectID());
+  public create(data: any): Promise<IUserModel> {
+    return this.Model.create({...data, _id: UserRepository.generateObjectID()});
   }
-  public delete(...data: any) {
-    this.Model.deleteMany({ name: 'abcd' }, (err) => {
-      if (err) { throw err; }
-      console.log('document deleted');
-
-    });
+  public delete() {
+    return this.Model.deleteMany({ name: '' });
   }
-  public update(...data: any) {
-    this.Model.updateOne({ id: '8' }, { $set: {name: 'ab', id: '1' } }, (err) => {
-    if (err) { throw err; }
-    console.log('1 document updated');
-
-  });
+  public update() {
+    return this.Model.updateMany({ name: 'abcdsd' }, { $set: {name: 'sagun' } });
 
   }
-
 }

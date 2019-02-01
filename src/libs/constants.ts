@@ -1,18 +1,18 @@
-import { IPermission } from "./interface";
-const headTrainer: string = "head-trainer";
-const trainer: string = "trainer";
-const trainee: string = "trainee";
+import { IPermission } from './interface';
+const headTrainer: string = 'head-trainer';
+const trainer: string = 'trainer';
+const trainee: string = 'trainee';
 export const permission: IPermission = {
-  "Traineee": {
+  Traineee: {
     all: [headTrainer],
+    delete: [],
     read: [trainee, trainer],
     write: [trainer],
-    delete: []
-  },
-  "User": {
+    },
+  User: {
     all: [headTrainer],
+    delete: [],
     read: [trainee, trainer],
     write: [trainer],
-    delete: []
-  }
+    },
 };

@@ -10,11 +10,11 @@ class Database {
           { useNewUrlParser: true },
         )
         .then((result) => {
-          // seed();
+          seed();
           UpdateData();
           deleteData();
           resolve(result);
-        })
+          })
         .catch((err) => reject(err));
     });
   }

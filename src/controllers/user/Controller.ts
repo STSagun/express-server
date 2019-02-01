@@ -14,7 +14,7 @@ class UserController {
     ];
     res
       .status(200)
-      .send(successHandler('user fetched successfully', 'ok', 200, data));
+      .send(successHandler( data, 'user fetched successfully', 200, 'ok' ));
   }
   public post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
@@ -26,7 +26,7 @@ class UserController {
     ];
     res
       .status(200)
-      .send(successHandler('user updated successfully', 'ok', 200, data));
+      .send(successHandler(data , 'user updated successfully', 200, 'ok' ));
   }
   public put(req: Request, res: Response) {
     const { dataToUpdate, id } = req.body;
@@ -38,12 +38,12 @@ class UserController {
     ];
     res
       .status(200)
-      .send(successHandler('user upgraded successfully', 'ok', 200, data));
+      .send(successHandler(data, 'user upgraded successfully', 200 , 'ok'));
   }
   public delete(req: Request, res: Response) {
     res
       .status(200)
-      .send(successHandler('user deleted successfully', 'ok', 200, undefined));
+      .send(successHandler(undefined, 'user deleted successfully', 200, 'ok'  ));
   }
 }
 export default new UserController();
