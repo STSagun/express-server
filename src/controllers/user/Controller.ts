@@ -1,49 +1,49 @@
-import { Request, Response, Next } from "express";
-import { default as successHandler } from "../../libs/routes/successHandler";
-class userController {
-  get(req: Request, res: Response) {
+import { Next, Request, Response } from 'express';
+import { default as successHandler } from '../../libs/routes/successHandler';
+class UserController {
+  public get(req: Request, res: Response) {
     const data = [
       {
-        name: "user1",
-        Id: 1
+        id: 1,
+        name: 'user1',
       },
       {
-        name: "user2",
-        Id: 2
-      }
+        id: 1,
+        name: 'user2',
+      },
     ];
     res
       .status(200)
-      .send(successHandler("user fetched successfully", "ok", 200, data));
+      .send(successHandler('user fetched successfully', 'ok', 200, data));
   }
-  post(req: Request, res: Response, next: Next) {
+  public post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
     const data = [
       {
+        id,
         name,
-        id
-      }
+      },
     ];
     res
       .status(200)
-      .send(successHandler("user updated successfully", "ok", 200, data));
+      .send(successHandler('user updated successfully', 'ok', 200, data));
   }
-  put(req: Request, res: Response) {
+  public put(req: Request, res: Response) {
     const { dataToUpdate, id } = req.body;
     const data = [
       {
-        dataToUpdate: dataToUpdate,
-        Id: id
-      }
+        Id: id,
+        dataToUpdate,
+      },
     ];
     res
       .status(200)
-      .send(successHandler("user upgraded successfully", "ok", 200, data));
+      .send(successHandler('user upgraded successfully', 'ok', 200, data));
   }
-  delete(req: Request, res: Response) {
+  public delete(req: Request, res: Response) {
     res
       .status(200)
-      .send(successHandler("user deleted successfully", "ok", 200, null));
+      .send(successHandler('user deleted successfully', 'ok', 200, undefined));
   }
 }
-export default new userController();
+export default new UserController();
