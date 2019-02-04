@@ -1,19 +1,9 @@
 import { Next, Request, Response } from 'express';
 import { default as successHandler } from '../../libs/routes/successHandler';
-import UserRepository from '../../repositories/user/UserRepository';
 class UserController {
   public get(req: Request, res: Response) {
     try {
-      const { name, role, email } = req.body.data;
       const { result } = req.body;
-      const data = [
-        {
-          Email: email,
-          Name: name,
-          Role: role,
-        },
-      ];
-      const repository = new UserRepository();
       console.log('result retrive from database for the particular id----->', result);
       res
         .status(200)
