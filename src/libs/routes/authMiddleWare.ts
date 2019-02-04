@@ -1,7 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import UserRepository from '../../repositories/user/UserRepository';
 import hasPermission from './permission';
-import successHandler from './successHandler';
 
 export default function authMiddleWare(module, permissionType) {
   return (req, res, next) => {
@@ -20,20 +19,19 @@ export default function authMiddleWare(module, permissionType) {
     const repository = new UserRepository();
     req.body.data = user;
     const { role, email, name} = user;
-    console.log('user-->', user);
-    repository.userFind({name}).then((result) => {
-      if (!user) {
+    repository.userFind({name, email, role}).then((result) => {
+      if (!result) {
         next({
           error: 'Unauthorized Access',
-          message: 'Unauthorized user',
+          message: 'Data of this user is not present in Database',
           status: 400,
         });
       }
       req.body.result = result;
-      if (!hasPermission(module, user.role, permissionType)) {
+      if (result !== null && !hasPermission(module, result.role, permissionType)) {
         next({
           error: 'Permission Denied',
-          message: `Access of ${permissionType} for ${user.role} do not exits`,
+          message: `Access of ${permissionType} for ${result.role} do not exits`,
           status: '400',
         });
       }

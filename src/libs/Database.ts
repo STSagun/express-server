@@ -11,8 +11,8 @@ class Database {
         )
         .then((result) => {
           seed();
-          UpdateData();
-          deleteData();
+          // UpdateData();
+          // deleteData();
           resolve(result);
           })
         .catch((err) => reject(err));

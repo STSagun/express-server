@@ -3,30 +3,26 @@ import { default as successHandler } from '../../libs/routes/successHandler';
 import UserRepository from '../../repositories/user/UserRepository';
 class UserController {
   public get(req: Request, res: Response) {
-    const { name, role, email } = req.body.data;
-    const { result } = req.body;
-    const data = [
-      {
-        Email: email,
-        Name: name,
-        Role: role,
-      },
-    ];
-    const repository = new UserRepository();
-    // repository.userFind({name}).then((result) => {
-    //   // if (!user) {
-    //   //   next({
-    //   //     error: 'Unauthorized Access',
-    //   //     message: 'Unauthorized user',
-    //   //     status: 400,
-    //   //   });
-    //   // }
-    //   console.log('erro-->', result);
-    console.log('dsafdsf', result);
-    res
-      .status(200)
-      .send(successHandler(result , 'user fetched successfully', 200, 'ok' ));
+    try {
+      const { name, role, email } = req.body.data;
+      const { result } = req.body;
+      const data = [
+        {
+          Email: email,
+          Name: name,
+          Role: role,
+        },
+      ];
+      const repository = new UserRepository();
+      console.log('result retrive from database for the particular id----->', result);
+      res
+        .status(200)
+        .send(successHandler(result , 'user fetched successfully', 200, 'ok' ));
     }
+      catch (error) {
+        console.error(error);
+      }
+  }
   public post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
     const data = [

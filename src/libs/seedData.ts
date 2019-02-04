@@ -9,9 +9,9 @@ function seed() {
         role: 'head-trainer',
       });
       repository.create({
-        email: 'Sagun@successive.tech',
+        email: 'traineee@successive.tech',
         name: 'rahul',
-        role: 'Traineeeeers',
+        role: 'trainee',
       });
     }
   });

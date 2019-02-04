@@ -13,9 +13,7 @@ export default class UserRepository {
     this.Model = UserModel;
   }
   public userFind(data) {
-    console.log('data-->', data);
     return this.Model.findOne(data, (err, result) => {
-      console.log('result-->', result);
       if (err) {
           return err;
       }
