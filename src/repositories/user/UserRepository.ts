@@ -1,6 +1,8 @@
 import * as mongoose from 'mongoose';
+import successHandler from '../../libs/routes/successHandler';
 import IUserModel from './IUserModel';
 import { UserModel, userSchema } from './UserModel';
+
 export default class UserRepository {
   public static generateObjectID() {
     return String(mongoose.Types.ObjectId());
@@ -9,6 +11,17 @@ export default class UserRepository {
 
   constructor() {
     this.Model = UserModel;
+  }
+  public userFind(data) {
+    return this.Model.findOne(data, (err, result) => {
+      if (err) {
+          return err;
+      }
+      return result;
+    });
+  }
+  public userCount() {
+  return this.Model.countDocuments();
   }
   public create(data: any): Promise<IUserModel> {
     return this.Model.create({...data, _id: UserRepository.generateObjectID()});

@@ -12,7 +12,7 @@ const {
 } = validations;
 const { get, post, put, delete: del } = userController;
 userRouter
-  .get('/', authMiddleWare(`user`, `write`), get)
+  .get('/', authMiddleWare(`User`, `read`), get)
   .post('/', validationHandler(valPost), post)
   .put('/', validationHandler(valPut), put)
   .delete('/:id', validationHandler(valDelete), del);
