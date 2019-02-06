@@ -12,9 +12,10 @@ export default (objData) => (req, res, next) => {
       }
     }
     if (item && item.string) {
-      const validateValue = value.filter((items) => typeof item === 'string');
-      if (validateValue.length !== value.length) {
-        next(notFound(`type of ID should be string`));
+      const validateValue = value.filter((items) => item);
+      const iterate = validateValue.values();
+      if (typeof iterate.next().value !== 'string') {
+        next(notFound('type is not Object'));
       }
     }
     if (item && item.number) {
@@ -34,8 +35,7 @@ export default (objData) => (req, res, next) => {
     }
     if (item.isObject) {
       const validateValue = value.filter((items) => item);
-      const iterate = validateValue.values();
-      if (typeof iterate.next().value !== 'object') {
+      if (typeof validateValue !== 'object') {
         next(notFound('type is not Object'));
       }
     }

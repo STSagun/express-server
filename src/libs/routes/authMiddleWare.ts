@@ -5,7 +5,7 @@ import hasPermission from './permission';
 export default function authMiddleWare(module, permissionType) {
   return (req, res, next) => {
     const token = req.headers.authorization;
-    require('dotenv').config();
+
     const user = jwt.verify(token, process.env.KEY, (err, result) => {
       if (err) {
         next({
@@ -18,8 +18,8 @@ export default function authMiddleWare(module, permissionType) {
     });
     const repository = new UserRepository();
     req.body.data = user;
-    const { role, email, name} = user;
-    repository.userFind({name, email, role}).then((result) => {
+    const { id } = user;
+    repository.userFind({ _id: id }).then((result) => {
       if (!result) {
         next({
           error: 'Unauthorized Access',
@@ -27,8 +27,8 @@ export default function authMiddleWare(module, permissionType) {
           status: 400,
         });
       }
-      req.body.result = result;
-      if (result !== null && !hasPermission(module, result.role, permissionType)) {
+      req.result = result;
+      if (result && !hasPermission(module, result.role, permissionType)) {
         next({
           error: 'Permission Denied',
           message: `Access of ${permissionType} for ${result.role} do not exits`,
@@ -36,6 +36,6 @@ export default function authMiddleWare(module, permissionType) {
         });
       }
       next();
-    });
-  };
+      });
+    };
 }
