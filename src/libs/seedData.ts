@@ -17,13 +17,3 @@ function seed() {
   });
 }
 export default seed;
-export function deleteData() {
-  repository.delete().then((result) => {
-    console.log('number of deleted user ', result);
-  });
-}
-export function UpdateData() {
-  repository.update().then((result) => {
-    console.log('number of updated user', result);
-  });
-}

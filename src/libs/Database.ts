@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import seed from './seedData';
-import { deleteData, UpdateData } from './seedData';
+// import { deleteData, UpdateData } from './seedData';
 class Database {
   public static open(mongo) {
     return new Promise((resolve, reject) => {
