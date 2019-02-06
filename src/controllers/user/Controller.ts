@@ -1,10 +1,10 @@
 import { Next, Request, Response } from 'express';
 import { default as successHandler } from '../../libs/routes/successHandler';
-import UserRepository from '../../repositories/user/UserRepository';
 class UserController {
   public get(req: Request, res: Response) {
     try {
       const { result } = req;
+
       res
         .status(200)
         .send(successHandler(result , 'user fetched successfully', 200, 'ok' ));
