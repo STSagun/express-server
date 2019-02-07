@@ -13,15 +13,19 @@ export default class UserRepository extends VersionableRepository < IUserModel, 
 }
 
 public create(data: any): Promise<IUserModel> {
+  try {
   return this.genericCreate(data);
-
+  } catch (err) {
+    console.log('#$@#R%::::::::::');
+    console.log(err);
+    throw err;
+  }
 }
 public delete(data: any) {
   return this.genericDelete(data);
 
 }
-public update(data: any, DTU: any ) {
-  return this.genericUpdate(data, DTU);
-}
-
+public update(data: any, DTU: any, next ) {
+  const result = this.genericUpdate(data, DTU, next);
+  }
 }

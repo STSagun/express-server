@@ -17,9 +17,11 @@ export default function authMiddleWare(module, permissionType) {
       return result;
     });
     const repository = new UserRepository();
-    req.body.data = user;
-    const { id } = user;
-    repository.userFind({ _id: id }).then((result) => {
+    req.body.data = user.result;
+    console.log(user, 'user:::::::::;;');
+    const { _id } = user.result;
+    console.log( 'id""""""""', _id);
+    repository.userFind({ _id }).then((result) => {
       if (!result) {
         next({
           error: 'Unauthorized Access',

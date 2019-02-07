@@ -1,10 +1,12 @@
 import { Next, Request, Response } from 'express';
 import { default as successHandler } from '../../libs/routes/successHandler';
 import UserRepository from '../../repositories/user/UserRepository';
+import VersionableRepositories from '../../repositories/versionable/VersionableRepository';
 class UserController {
-  public get(req: Request, res: Response) {
+  public async get(req: Request, res: Response) {
     try {
-      const { result } = req;
+      const userRepository = new UserRepository();
+      const result = await userRepository.Data();
       res
         .status(200)
         .send(successHandler(result , 'user fetched successfully', 200, 'ok' ));
@@ -13,7 +15,7 @@ class UserController {
         console.error(error);
       }
   }
-  public post(req: Request, res: Response, next: Next) {
+  public async post(req: Request, res: Response, next: Next) {
     const { name, id, email, role } = req.body;
     const data = { name, id , email, role};
     console.log('data--->', data);
@@ -32,19 +34,24 @@ class UserController {
     .status(200)
     .send(successHandler(data, 'Successfully Created Users', 200, 'ok '));
     }}
-  public put(req: Request, res: Response) {
+  public async put(req: Request, res: Response , next: Next) {
+    try {
     const { dataToUpdate, id } = req.body;
     const data =  {
         _id: id,
         dataToUpdate,
       };
     const userRepository = new UserRepository();
-    userRepository.update({_id: id}, dataToUpdate );
+    userRepository.update({_id: id}, dataToUpdate , next);
     res
       .status(200)
       .send(successHandler(data, 'user upgraded successfully', 200 , 'ok'));
   }
-  public delete(req: Request, res: Response) {
+catch (err) {
+    console.log('$#%#@$%#$%$', err);
+}
+  }
+  public async delete(req: Request, res: Response) {
     const { id } = req.params;
     const userRepository = new UserRepository();
     userRepository.delete({_id: id});

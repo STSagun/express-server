@@ -15,7 +15,7 @@ export default (objData) => (req, res, next) => {
       const validateValue = value.filter((items) => item);
       const iterate = validateValue.values();
       if (typeof iterate.next().value !== 'string') {
-        next(notFound('type is not Object'));
+        next(notFound('type is not String'));
       }
     }
     if (item && item.number) {
@@ -29,6 +29,7 @@ export default (objData) => (req, res, next) => {
     }
     if (item && item.regex) {
       const validateValue = value.filter((items) => item);
+      console.log(validateValue);
       if (!item.regex.test(validateValue)) {
         next(notFound('incorrect format of Name'));
       }
