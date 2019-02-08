@@ -7,19 +7,15 @@ const validation = {
     },
   },
   post: {
-    id: {
-      errorMessage: 'Id  is required',
+    email: {
+      errorMessage: 'email  is required',
       in: ['body'],
+      regex: RegExp(/^[A-Za-z0-9._%+-]+@successive.tech$/),
       required: true,
-      string: true,
-      custom(value) {
-        //  throw { error: "Error Occurred", message: "Message" };
-      },
     },
-    name: {
-      errorMessage: 'Name is required',
+    userPassword: {
+      errorMessage: 'Password is required',
       in: ['body'],
-      regex: /^[a-zA-Z\s]+$/,
       required: true,
     },
   },

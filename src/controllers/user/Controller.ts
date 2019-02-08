@@ -5,8 +5,9 @@ import VersionableRepositories from '../../repositories/versionable/VersionableR
 class UserController {
   public async get(req: Request, res: Response) {
     try {
+      const { skip, limit } = req.query;
       const userRepository = new UserRepository();
-      const result = await userRepository.Data();
+      const result = await userRepository.Data({role: 'trainee'}, skip, limit);
       res
         .status(200)
         .send(successHandler(result , 'user fetched successfully', 200, 'ok' ));
@@ -42,13 +43,20 @@ class UserController {
         dataToUpdate,
       };
     const userRepository = new UserRepository();
-    userRepository.update({_id: id}, dataToUpdate , next);
+    const result = await userRepository.update({_id: id}, dataToUpdate);
+    console.log('resulkt', result);
     res
       .status(200)
       .send(successHandler(data, 'user upgraded successfully', 200 , 'ok'));
   }
 catch (err) {
     console.log('$#%#@$%#$%$', err);
+    next(
+      {error: 'Unauthorized Access',
+        message: 'Data of this user is not present in Database',
+        status: 400,
+    },
+    );
 }
   }
   public async delete(req: Request, res: Response) {

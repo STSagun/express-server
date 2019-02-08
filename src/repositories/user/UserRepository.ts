@@ -25,7 +25,13 @@ public delete(data: any) {
   return this.genericDelete(data);
 
 }
-public update(data: any, DTU: any, next ) {
-  const result = this.genericUpdate(data, DTU, next);
+public async update(data: any, DTU: any) {
+  // try {
+    console.log('inside update::::::::::::', data);
+    const result = await this.genericUpdate(data, DTU);
+  // } catch (error) {
+  //   console.log(error, 'ererrorHandler(rorrrrr in update');
+  //   throw error;
+  // }
   }
 }

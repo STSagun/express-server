@@ -4,8 +4,8 @@ const repository = new UserRepository();
 const MongoPassword = process.env.PASSWORD;
 export default async () => {
   try {
-  repository.userCount();
   const res = await repository.userCount();
+  console.log('count:::::::::::::', res);
   if (res === 0) {
       bcrypt.hash(MongoPassword, 10, (err, hash) => {
         console.log('hash', hash);
