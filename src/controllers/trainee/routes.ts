@@ -12,8 +12,13 @@ const {
 } = validations;
 const { get, post, put, delete: del } = traineeController;
 traineeRouter
-  .get('/', authMiddleWare(`Traineee`, `write`), get)
-  .post('/', validationHandler(valPost), post)
-  .put('/', validationHandler(valPut), put)
-  .delete('/:id', validationHandler(valDelete), del);
+  .get('/', authMiddleWare(`User`, `read`), validationHandler(valGet), get)
+  .post('/', authMiddleWare(`User`, `read`), validationHandler(valPost), post)
+  .put('/', authMiddleWare(`User`, `read`), validationHandler(valPut), put)
+  .delete(
+    '/:id',
+    authMiddleWare(`User`, `read`),
+    validationHandler(valDelete),
+    del,
+  );
 export { traineeRouter };

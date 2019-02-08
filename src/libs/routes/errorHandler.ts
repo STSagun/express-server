@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 
 export default function errorHandler(
   err: any,
-  req?: Request,
-  res?: Response,
-  next?,
+  req: Request,
+  res: Response,
+  next,
 ) {
   const { error, message, status } = err;
   res.status(status).json({

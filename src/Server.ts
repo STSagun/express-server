@@ -35,22 +35,23 @@ class Server {
     app.use(errorHandler);
     app.use(successHandler);
   }
-  public run() {
+  public async run() {
+    try {
     const {
       app,
       config: { Port, MONGO_URL },
     } = this;
-    Database.open(MONGO_URL)
-      .then((result) => {
+    const result = await Database.open(MONGO_URL);
+    if (result) {
         console.log('Connected');
         app.listen(Port, (err) => {
           if (err) { throw err; }
           console.log('app is running at', Port);
         });
-      })
-      .catch((err) => {
+      }
+      } catch (err) {
         console.log('Oops Some Error Ocurred');
-      });
-  }
+      }
+}
 }
 export { Server };

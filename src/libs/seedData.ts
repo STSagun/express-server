@@ -3,9 +3,7 @@ import UserRepository from '../repositories/user/UserRepository';
 const repository = new UserRepository();
 const MongoPassword = process.env.PASSWORD;
 export default async () => {
-  try {
   const res = await repository.userCount();
-  console.log('count:::::::::::::', res);
   if (res === 0) {
       bcrypt.hash(MongoPassword, 10, (err, hash) => {
         console.log('hash', hash);
@@ -23,7 +21,7 @@ export default async () => {
       });
     });
   }
-} catch (err) {
-  console.log(err);
-}
+  if (!res) {
+    throw {error: 'Some error ocuured in SeedData'};
+  }
 };

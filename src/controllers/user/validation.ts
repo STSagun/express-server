@@ -39,7 +39,6 @@ const validation = {
       number: true,
       required: false,
     },
-
   },
   put: {
     dataToUpdate: {
@@ -47,12 +46,12 @@ const validation = {
       isObject: true,
       required: true,
       // custom(dataToUpdate) {value},
-      },
+    },
     id: {
       in: ['body'],
       required: true,
       string: true,
-      },
     },
+  },
 };
 export default validation;

@@ -3,7 +3,7 @@ import { default as successHandler } from '../../libs/routes/successHandler';
 import UserRepository from '../../repositories/user/UserRepository';
 import VersionableRepositories from '../../repositories/versionable/VersionableRepository';
 class UserController {
-  public async get(req: Request, res: Response) {
+  public async get(req: Request, res: Response, next: Next) {
     try {
       const { skip, limit } = req.query;
       const userRepository = new UserRepository();
@@ -13,13 +13,17 @@ class UserController {
         .send(successHandler(result , 'user fetched successfully', 200, 'ok' ));
     }
       catch (error) {
-        console.error(error);
+        throw next(
+          {error: 'Unauthorized Access',
+            message: 'Data of this user is not present in Database',
+            status: 400,
+        },
+        );
       }
   }
   public async post(req: Request, res: Response, next: Next) {
     const { name, id, email, role } = req.body;
     const data = { name, id , email, role};
-    console.log('data--->', data);
     if (!id) {
       next(notFound( 'ID is Not Present'));
     } else if (!name) {
@@ -38,19 +42,23 @@ class UserController {
   public async put(req: Request, res: Response , next: Next) {
     try {
     const { dataToUpdate, id } = req.body;
+    if (!id) {
+      next(notFound('ID is Not Present'));
+    } else if (!dataToUpdate) {
+      next(notFound('dataToUpdate is Not Present'));
+    } else {
     const data =  {
         _id: id,
         dataToUpdate,
       };
     const userRepository = new UserRepository();
     const result = await userRepository.update({_id: id}, dataToUpdate);
-    console.log('resulkt', result);
     res
       .status(200)
       .send(successHandler(data, 'user upgraded successfully', 200 , 'ok'));
+    }
   }
 catch (err) {
-    console.log('$#%#@$%#$%$', err);
     next(
       {error: 'Unauthorized Access',
         message: 'Data of this user is not present in Database',

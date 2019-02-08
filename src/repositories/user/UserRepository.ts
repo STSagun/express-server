@@ -16,8 +16,6 @@ public create(data: any): Promise<IUserModel> {
   try {
   return this.genericCreate(data);
   } catch (err) {
-    console.log('#$@#R%::::::::::');
-    console.log(err);
     throw err;
   }
 }
@@ -26,12 +24,6 @@ public delete(data: any) {
 
 }
 public async update(data: any, DTU: any) {
-  // try {
-    console.log('inside update::::::::::::', data);
     const result = await this.genericUpdate(data, DTU);
-  // } catch (error) {
-  //   console.log(error, 'ererrorHandler(rorrrrr in update');
-  //   throw error;
-  // }
   }
 }

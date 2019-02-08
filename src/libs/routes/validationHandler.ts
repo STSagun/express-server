@@ -1,51 +1,50 @@
 export default (objData) => (req, res, next) => {
   const keys = Object.keys(objData);
   keys.forEach((key) => {
-    const item = objData[key];
-    const value = item.in.map((items) => {
-      return req[items][key];
+    const items = objData[key];
+    const value = items.in.map((item) => {
+      return req[item][key];
     });
-    if (item && item.required) {
-      const validateValue = value.filter((items) => item);
+    if (items && items.required) {
+      const validateValue = value.filter((item) => item);
       if (validateValue.length !== value.length) {
-        next(notFound(`${item.errorMessage}`));
+        next(notFound('Something is required'));
       }
     }
-    if (item && item.string) {
-      const validateValue = value.filter((items) => item);
+    if (items && items.string) {
+      const validateValue = value.filter((item) => item);
       const iterate = validateValue.values();
       if (typeof iterate.next().value !== 'string') {
         next(notFound('type is not String'));
       }
     }
-    if (item && item.number) {
-      let validateValue1 = value.filter((items) => item);
+    if (items && items.number) {
+      let validateValue1 = value.filter((item) => item);
       if (isNaN(validateValue1)) {
         next(notFound('not number type'));
       }
       if (validateValue1 === '') {
-        validateValue1 = item.default;
+        validateValue1 = items.default;
       }
     }
-    if (item && item.regex) {
-      const validateValue = value.filter((items) => item);
-      console.log(validateValue);
-      if (!item.regex.test(validateValue)) {
-        next(notFound('incorrect format of Name'));
+    if (items && items.regex) {
+      const validateValue = value.filter((item) => item);
+      if (!items.regex.test(validateValue)) {
+        next(notFound('incorrect format regex'));
       }
     }
-    if (item.isObject) {
-      const validateValue = value.filter((items) => item);
+    if (items.isObject) {
+      const validateValue = value.filter((item) => item);
       if (typeof validateValue !== 'object') {
         next(notFound('type is not Object'));
       }
     }
-    if (item.custom) {
-      item.custom(80);
+    if (items.custom) {
+      items.custom(80);
     }
-    if (item && item.in) {
-      const reqKeys = Object.keys(req[item.in[0]]);
-      if (reqKeys.length && !reqKeys.includes(key)) {
+    if (items && items.in) {
+      const reqKeys = Object.keys(req[items.in[0]]);
+      if (!reqKeys.length && reqKeys.includes(key)) {
         next(notFound('incorrect request'));
       }
     }

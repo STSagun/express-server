@@ -21,12 +21,18 @@ class Controller {
             { expiresIn: 15 * 60 },
           );
           res.status(200).send(successHandler(token, email, 200, 'ok'));
-        } else {
-          next('cannot find password');
         }
+        next(
+          {error: 'Cannot Find Password'},
+        );
       });
     } catch (err) {
-      console.log(err);
+      next(
+        {error: 'Unauthorized Access',
+          message: 'Token time out',
+          status: 400,
+      },
+      );
     }
   }
 }

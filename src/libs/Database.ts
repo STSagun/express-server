@@ -2,22 +2,14 @@ import * as mongoose from 'mongoose';
 import seed from './seedData';
 // import { deleteData, UpdateData } from './seedData';
 class Database {
-  public static open(mongo) {
-    return new Promise((resolve, reject) => {
-      mongoose
-        .connect(
+  public static async open(mongo) {
+    const result = await mongoose.connect(
           mongo,
           { useNewUrlParser: true },
-        )
-        .then((result) => {
-          seed();
-          // UpdateData();
-          // deleteData();
-          resolve(result);
-          })
-        .catch((err) => reject(err));
-    });
-  }
+        );
+    const result1 = await seed();
+    return result;
+    }
   public static disconnect() {
     mongoose.disconnect();
   }
