@@ -2,6 +2,7 @@ import { Next, Request, Response } from 'express';
 import { default as successHandler } from '../../libs/routes/successHandler';
 import UserRepository from '../../repositories/user/UserRepository';
 import VersionableRepositories from '../../repositories/versionable/VersionableRepository';
+
 class UserController {
   public async get(req: Request, res: Response, next: Next) {
     try {
