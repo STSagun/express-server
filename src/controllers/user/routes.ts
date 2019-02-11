@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { validationHandler } from '../../libs/routes';
 import authMiddleWare from '../../libs/routes/authMiddleWare';
-import validations from '../trainee/validations';
+import validations from '../user/validation';
 import userController from './Controller';
 const userRouter = express.Router();
 const {

@@ -1,6 +1,6 @@
 export default (
   Data: any,
-  Message: string,
+  Message: any,
   Status: number,
   Success: string,
   ) => ({

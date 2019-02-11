@@ -14,7 +14,7 @@ class TraineeController {
     ];
     res
       .status(200)
-      .send(successHandler( data, 'trainee fetched successfully', 200, 'ok' ));
+      .send(successHandler(data, 'trainee fetched successfully', 200, 'ok'));
   }
   public post(req: Request, res: Response, next: Next) {
     const { name, id } = req.body;
@@ -26,7 +26,7 @@ class TraineeController {
     ];
     res
       .status(200)
-      .send(successHandler(data, 'Trainee updated successfully', 200, 'ok' ));
+      .send(successHandler(data, 'Trainee updated successfully', 200, 'ok'));
   }
   public put(req: Request, res: Response) {
     const { dataToUpdate, id } = req.body;
@@ -38,12 +38,14 @@ class TraineeController {
     ];
     res
       .status(200)
-      .send(successHandler(data, 'Trainee updated successfully', 200, 'ok' ));
+      .send(successHandler(data, 'Trainee updated successfully', 200, 'ok'));
   }
   public delete(req: Request, res: Response) {
     res
       .status(200)
-      .send(successHandler(undefined, 'Trainee deleted successfully', 200, 'ok'  ));
+      .send(
+        successHandler(undefined, 'Trainee deleted successfully', 200, 'ok'),
+      );
   }
 }
 export default new TraineeController();

@@ -3,23 +3,23 @@ import UserRepository from '../../repositories/user/UserRepository';
 import hasPermission from './permission';
 
 export default function authMiddleWare(module, permissionType) {
-  return (req, res, next) => {
-    const token = req.headers.authorization;
-
-    const user = jwt.verify(token, process.env.KEY, (err, result) => {
-      if (err) {
-        next({
-          error: 'Unauthorized Access',
-          message: 'Unauthorized user',
-          status: 400,
-        });
-      }
-      return result;
-    });
-    const repository = new UserRepository();
-    req.body.data = user;
-    const { id } = user;
-    repository.userFind({ _id: id }).then((result) => {
+  return async (req, resp, next) => {
+    try {
+      const token = req.headers.authorization;
+      const user = jwt.verify(token, process.env.KEY, (err, res) => {
+        if (err) {
+          next({
+            error: 'Unauthorized Access',
+            message: 'Unauthorized user',
+            status: 400,
+          });
+        }
+        return res;
+      });
+      const repository = new UserRepository();
+      req.body.data = user.result;
+      const { _id } = user.result;
+      const result = await repository.userFind({ _id });
       if (!result) {
         next({
           error: 'Unauthorized Access',
@@ -31,11 +31,19 @@ export default function authMiddleWare(module, permissionType) {
       if (result && !hasPermission(module, result.role, permissionType)) {
         next({
           error: 'Permission Denied',
-          message: `Access of ${permissionType} for ${result.role} do not exits`,
+          message: `Access of ${permissionType} for ${
+            result.role
+          } do not exits`,
           status: '400',
         });
       }
-      next();
+    } catch (err) {
+      next({
+        error: 'Some error',
+        message: 'Occured in AuthMiddelWare',
+        status: 400,
       });
-    };
+    }
+    next();
+  };
 }
